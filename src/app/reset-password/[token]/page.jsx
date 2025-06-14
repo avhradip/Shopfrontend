@@ -1,5 +1,6 @@
 "use client"
 
+import { Loader2 } from 'lucide-react'
 import { resetPassword } from '../../../Feature/userSlice'
 import { useParams, useRouter } from 'next/navigation'
 import React, { useState } from 'react'

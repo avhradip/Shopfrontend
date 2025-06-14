@@ -1,5 +1,6 @@
 "use client"
 
+import { Loader2 } from 'lucide-react'
 import { forgotPassword } from '../../Feature/userSlice'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
