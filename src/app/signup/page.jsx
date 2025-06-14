@@ -3,7 +3,7 @@
 import { signUp } from '../../Feature/userSlice';
 import { useRouter } from 'next/navigation';
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Page() {
   const router = useRouter();
@@ -13,6 +13,7 @@ function Page() {
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { loading } = useSelector((state) => state.user);
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // <- add this
@@ -152,7 +153,7 @@ function Page() {
           shadow-sm text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2
           focus:ring-offset-2 focus:ring-black text-sm font-medium"
           >
-            Sign in
+            {loading ? <Loader2 /> : "Sign in"}
           </button>
         </form>
 

@@ -3,14 +3,16 @@
 import { login } from '../../Feature/userSlice';
 import { useRouter } from 'next/navigation';
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { signIn, signOut, useSession } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
+import { Loader2 } from 'lucide-react';
 
 
 function Page() {
     const { data: session } = useSession();
+    const { loading } = useSelector((state) => state.user);
     const router = useRouter();
     const dispatch = useDispatch()
     const [email, setEmail] = useState("");
@@ -99,7 +101,7 @@ function Page() {
                         type="submit"
                         className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black text-sm font-medium"
                     >
-                        Login
+                        {loading ? <Loader2 /> : "Login"}
                     </button>
                 </form>
 

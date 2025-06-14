@@ -3,10 +3,11 @@
 import { forgotPassword } from '../../Feature/userSlice'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 function page() {
     const dispatch = useDispatch()
+    const { loading } = useSelector((state) => state.user);
     const [email, setEmail] = useState("")
 
     const handleForgotPassword = async (email) => {
@@ -48,7 +49,7 @@ function page() {
                         onClick={() => handleForgotPassword(email)}
                         className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black text-sm font-medium"
                     >
-                        Submit
+                        {loading ? <Loader2 /> : "Submit"}
                     </button>
                 </div>
 
