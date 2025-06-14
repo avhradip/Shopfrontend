@@ -5,9 +5,12 @@
             "@/*": [
                 "./src/*"
             ], // This maps the "@/" alias to your "src/" directory (e.g., @/Feature to src/Feature)
+            // This line attempts to resolve "@/components/*" first from the root "components/" folder,
+            // and if not found, then from "src/components/" folder.
             "@/components/*": [
+                "./components/*",
                 "./src/components/*"
-            ] // This updated line maps "@/components/" to your "src/components/" directory
+            ]
         },
         "jsx": "preserve" // Required for Next.js to handle JSX
     },
