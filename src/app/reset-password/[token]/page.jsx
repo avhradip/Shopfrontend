@@ -65,7 +65,7 @@ function page() {
             onClick={() => updatePassword({ newPassword: newPassword, conformPassword: conformPassword, token: token })}
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black text-sm font-medium"
           >
-            {loading ? <Loader2 /> : "conform"}
+            {loading ? <Loader2 className="animate-spin" /> : "conform"}
           </button>
         </div>
 

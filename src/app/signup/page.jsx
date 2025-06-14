@@ -153,7 +153,7 @@ function Page() {
           shadow-sm text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2
           focus:ring-offset-2 focus:ring-black text-sm font-medium"
           >
-            {loading ? <Loader2 /> : "Sign in"}
+            {loading ? <Loader2 className="animate-spin" /> : "Sign in"}
           </button>
         </form>
 
