@@ -1,6 +1,7 @@
 "use client"
 
-import { orders } from '../../Feature/prodectSlice';
+import Loading from '../../Components/Ui/Loading';
+import { orders } from '../../Feature/userSlice';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { MdArrowBackIosNew } from 'react-icons/md';
@@ -10,7 +11,7 @@ function Page() {
   const dispatch = useDispatch()
   const router = useRouter()
   const [isClient, setIsClient] = useState(false);
-  const { ordersList } = useSelector((state) => state.user)
+  const { ordersList,loading } = useSelector((state) => state.user)
 
   useEffect(() => {
     setIsClient(true)
@@ -52,8 +53,9 @@ function Page() {
 
       <div className="flex flex-wrap gap-6 justify-center md:mx-20 mx-4 py-6">
         
-        {ordersList?.orders && ordersList.orders.length > 0 ? (
-          ordersList.orders.map((order) => (
+        {loading ? <Loading/> :
+          ordersList?.orders && ordersList?.orders?.length > 0 ? (
+          ordersList?.orders?.map((order) => (
             
             <div
               key={order._id}
@@ -68,15 +70,15 @@ function Page() {
 
                   {/* Products List */}
                   <div className='flex flex-wrap justify-center gap-3'>
-                    {order.products.map((item, idx) => (
-                      <div key={item._id} className="text-center">
+                    {order?.products.map((item, idx) => (
+                      <div key={item?._id} className="text-center">
                         <img
-                          src={item.product.image?.[0] || "/placeholder.png"}
-                          alt={item.product.name}
+                          src={item?.product?.image?.[0] || "/placeholder.png"}
+                          alt={item?.product?.name}
                           className="w-24 h-24 object-cover rounded-xl border"
                         />
-                        <h3 className="text-sm font-semibold mt-2">{item.product.name}</h3>
-                        <p className="text-gray-500 text-xs">Qty: {item.quantity}</p>
+                        <h3 className="text-sm font-semibold mt-2">{item?.product?.name}</h3>
+                        <p className="text-gray-500 text-xs">Qty: {item?.quantity}</p>
                       </div>
                     ))}
                   </div>
@@ -89,22 +91,22 @@ function Page() {
 
                 <div className="flex justify-between items-center w-full mt-4 text-sm text-gray-600">
                   <span className="bg-gray-200 px-2 py-1 rounded-full text-xs capitalize">
-                    {order.status}
+                    {order?.status}
                   </span>
                   <span className="text-xs">
-                    {new Date(order.createdAt).toLocaleDateString()}
+                    {new Date(order?.createdAt).toLocaleDateString()}
                   </span>
                 </div>
 
                 {/* Payment & Address */}
                 <div className="mt-3 text-sm text-gray-500 text-left w-full">
                   <p>
-                    Payment: <span className="font-medium text-gray-700">{order.paymentMethod}</span>
+                    Payment: <span className="font-medium text-gray-700">{order?.paymentMethod}</span>
                   </p>
                   <p className="mt-1">
                     Address:{" "}
                     <span className="font-medium text-gray-700">
-                      {order.address?.street}, {order.address?.city}, {order.address?.state} - {order.address?.zip}, {order.address?.country}
+                      {order?.address?.street}, {order?.address?.city}, {order?.address?.state} - {order?.address?.zip}, {order?.address?.country}
                     </span>
                   </p>
                 </div>

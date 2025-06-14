@@ -67,7 +67,7 @@ export default function Profile() {
 
             <h2 className="text-lg font-semibold text-black">Profile Details</h2>
 
-            <LogoutDialog/>
+            <LogoutDialog handleLogOut={handleLogOut} />
           </div>
           <img src={
             profilePicture
