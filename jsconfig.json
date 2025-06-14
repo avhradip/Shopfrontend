@@ -4,7 +4,10 @@
         "paths": {
             "@/*": [
                 "./src/*"
-            ] // This maps the "@/" alias to your "src/" directory
+            ], // This maps the "@/" alias to your "src/" directory
+            "@/components/*": [
+                "./components/*"
+            ] // This new line maps "@/components/" to your root "components/" directory
         },
         "jsx": "preserve" // Required for Next.js to handle JSX
     },
