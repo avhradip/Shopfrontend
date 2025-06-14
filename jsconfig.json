@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".", // This tells Next.js to resolve imports relative to the project root
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ] // This maps the "@/" alias to your "src/" directory
+        },
+        "jsx": "preserve" // Required for Next.js to handle JSX
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.js",
+        "**/*.jsx"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
