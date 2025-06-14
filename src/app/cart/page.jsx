@@ -7,7 +7,7 @@ import { MdArrowBackIosNew } from "react-icons/md";
 import { GoTag } from "react-icons/go";
 import { GoArrowRight } from "react-icons/go";
 import { useRouter } from 'next/navigation';
-import { cart, editCart, removeFromCart } from '@/Feature/userSlice';
+import { cart, editCart, removeFromCart } from '../../Feature/userSlice';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../src/Components/Ui/select';
 import Loading from '../../../src/Components/Ui/Loading';
 import toast from 'react-hot-toast';

@@ -8,7 +8,6 @@ import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct, editOrder, editProduct, getAllProduct, removeProduct } from "../../Feature/prodectSlice";
 import { orders } from "../../Feature/prodectSlice";
-import { Button } from "../../../src/Components/Ui/button";
 import { Input } from "../../../src/Components/Ui/input";
 
 function App() {
@@ -212,7 +211,7 @@ function App() {
                         <div>
                             <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-6">Product Section</h3>
 
-                            {/* Button to toggle Add Product form visibility */}
+                            {/* button to toggle Add Product form visibility */}
                             <button
                                 onClick={() => setShowAddProductForm(!showAddProductForm)}
                                 className="mb-6 px-4 py-2 md:px-6 md:py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition-colors duration-200 text-sm md:text-base"
@@ -292,16 +291,16 @@ function App() {
                                                     />
 
                                                     {image && (
-                                                        <Button variant="outline" onClick={() => setImage("")} className="w-24 text-xs md:text-sm">
+                                                        <button variant="outline" onClick={() => setImage("")} className="w-24 text-xs md:text-sm">
                                                             Cancel
-                                                        </Button>
+                                                        </button>
                                                     )}
                                                 </div>
                                             ))}
                                         </div>
                                     }
 
-                                    {/* Submit Button */}
+                                    {/* Submit button */}
                                     <div className="flex justify-end mt-6">
                                         {!editId ?
                                             (
