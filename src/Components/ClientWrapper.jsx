@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { cart, getUserFun } from "@/Feature/userSlice";
+import { cart, getUserFun } from "../Feature/userSlice";
 
 export default function ClientWrapper({ children }) {
     const dispatch = useDispatch();

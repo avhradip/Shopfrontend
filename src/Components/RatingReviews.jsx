@@ -5,10 +5,10 @@ import { BsThreeDots } from "react-icons/bs";
 import { VscSettings } from "react-icons/vsc";
 import { Button } from './Ui/button';
 import { useDispatch, useSelector } from 'react-redux';
-import { setInput, setShowAll } from '@/Feature/stateSlice';
+import { setInput, setShowAll } from '../Feature/stateSlice';
 import { review } from '@/constants';
 import { formatDistanceToNow } from 'date-fns'
-import { addReview, deletereview, getReviewByProductId, orders } from '@/Feature/userSlice';
+import { addReview, deletereview, getReviewByProductId, orders } from '../Feature/userSlice';
 import {
     Dialog,
     DialogTrigger,
@@ -18,7 +18,7 @@ import {
     DialogDescription,
     DialogFooter,
     DialogClose
-} from "@/components/ui/dialog";
+} from "../Components/Ui/dialog";
 import toast from 'react-hot-toast';
 import { IoMdContact } from 'react-icons/io';
 import { Avatar, AvatarFallback, AvatarImage } from './Ui/avatar';

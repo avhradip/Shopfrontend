@@ -6,7 +6,7 @@ import {
     DialogTitle,
     DialogFooter,
     DialogClose
-} from "@/components/ui/dialog";
+} from "../Components/Ui/dialog";
 
 export default function LogoutDialog({ handleLogOut }) {
     return (

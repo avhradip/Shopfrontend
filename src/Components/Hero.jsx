@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from "@/components/ui/button"
+import { Button } from "../Components/Ui/button"
 import i1 from "../../public/Rectangle.png"
 import Image from "next/image";
 

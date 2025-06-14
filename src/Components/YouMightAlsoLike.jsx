@@ -1,11 +1,11 @@
-import { fetchData, getAllProduct } from '@/Feature/prodectSlice';
+"use client"
 import { Rating } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from './Ui/Loading';
-import { cart, getwishlistFun, orders } from '@/Feature/userSlice';
+import { cart, getwishlistFun, orders } from '../Feature/userSlice';
 
 function YouMightAlsoLike() {
     const router = useRouter()

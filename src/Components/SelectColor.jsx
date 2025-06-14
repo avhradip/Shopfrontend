@@ -1,5 +1,5 @@
-import { colors } from '@/constants'
-import { setColor } from '@/Feature/filtersSlice'
+import { colors } from '../constants'
+import { setColor } from '../Feature/filtersSlice'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 

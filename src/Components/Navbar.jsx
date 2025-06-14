@@ -1,22 +1,19 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { LuShoppingCart } from "react-icons/lu";
 import { IoMdContact } from "react-icons/io";
 import { IoIosMenu } from "react-icons/io";
-import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
 import { MdKeyboardArrowDown, MdClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { setMenuOpen } from "@/Feature/stateSlice";
+import { setMenuOpen } from "../Feature/stateSlice";
 import { Avatar, AvatarFallback, AvatarImage } from "./Ui/avatar";
 import { CiHeart } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "./Ui/navigation-menu";
-import { getAllCatagoris } from "@/Feature/prodectSlice";
-import { getwishlistFun } from "@/Feature/userSlice";
+import { getAllCatagoris } from "../Feature/prodectSlice";
 
 
 export default function Navbar() {

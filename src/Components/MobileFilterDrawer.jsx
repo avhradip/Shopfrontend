@@ -6,7 +6,7 @@ import { MdKeyboardArrowUp } from 'react-icons/md'
 import { RxCross1 } from 'react-icons/rx'
 import PriceFilter from './PriceFilter'
 import SelectColor from './SelectColor'
-import { Button } from '@/components/ui/button'
+import { Button } from '../Components/Ui/button'
 import { GiSettingsKnobs } from 'react-icons/gi'
 
 const catagoris = [

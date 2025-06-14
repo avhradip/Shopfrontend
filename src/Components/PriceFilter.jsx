@@ -1,6 +1,6 @@
 "use client"; // Add this if using React hooks in a client-side component
 
-import { setPrice_max, setPrice_min } from "@/Feature/filtersSlice";
+import { setPrice_max, setPrice_min } from "../Feature/filtersSlice";
 import React from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
