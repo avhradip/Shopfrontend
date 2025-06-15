@@ -1,6 +1,6 @@
 "use client"
 
-import { getAllProduct } from '../../Feature/userSlice'
+import { getAllProduct } from '../../Feature/prodectSlice'
 import { Rating } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
