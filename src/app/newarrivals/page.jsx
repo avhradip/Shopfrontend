@@ -13,6 +13,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 import { MdKeyboardArrowUp } from 'react-icons/md';
 import { Button } from '../../Components/Ui/button';
 import PriceFilter from '../../Components/PriceFilter';
+import { Loader2 } from 'lucide-react';
 
 function Page() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -106,12 +107,16 @@ function Page() {
 
   return (
     <div>
-      <button
-        onClick={() => router.back()}
-        className="px-4 py-2 rounded hover:bg-gray-100"
-      >
-        <MdArrowBackIosNew />
-      </button>
+
+      <div className='w-full flex justify-between items-center'>
+        <button
+          onClick={() => router.back()}
+          className="px-4 py-2 rounded hover:bg-gray-100"
+        >
+          <MdArrowBackIosNew />
+        </button>
+        <p onClick={() => setIsOpen(true)} className="md:hidden mr-4"><GiSettingsKnobs /></p>
+      </div>
 
       <div className='flex flex-row ml-4'>
         {/* Filter Sidebar */}
@@ -124,7 +129,7 @@ function Page() {
               {(selectedCategory !== null || selectedSize !== null) && (
                 <RxCross1
                   className="text-[#807676] cursor-pointer"
-                  onClick={clearFilters}
+                  onClick={() => clearFilters()}
                   title="Clear Filters"
                 />
               )}
@@ -142,7 +147,8 @@ function Page() {
                 className={`flex justify-between items-center cursor-pointer ${selectedCategory === cat ? 'text-black font-semibold' : ''
                   }`}
                 onClick={() => {
-                  setSelectedCategory(cat);
+                  clearFilters()
+                  setSelectedCategory(cat)
                   dispatch(getProductByCatagori(cat))
                 }}
               >
@@ -219,7 +225,10 @@ function Page() {
             </div>
           </div>
           <Button className="rounded-3xl"
-            onClick={() => applyFilters()}
+            onClick={() => {
+              applyFilters()
+              setIsOpen(false)
+            }}
           >
             Apply Filter
           </Button>
@@ -227,40 +236,38 @@ function Page() {
         </div>
 
         {/* Product Display */}
-        <div className="md:mx-16 py-8 flex flex-col items-center">
+        <div className="md:mx-16 flex flex-col items-center">
           <p className="text-2xl md:text-3xl font-bold text-center">NEW ARRIVALS</p>
 
-          <div className="flex flex-wrap justify-center gap-4 py-8 w-full px-4 overflow-y-auto max-h-[800px] example">
-            {filteredData.length > 0 ? (
-              filteredData.map((item) => (
-                <div
-                  key={item?._id}
-                  className="w-44 cursor-pointer rounded-xl hover:shadow-lg transition duration-200 bg-white p-2"
-                  onClick={() => router.push(`/detailspage/${item?._id}`)}
-                >
-                  <img
-                    src={item?.image?.[0]}
-                    alt={item?.title}
-                    className="w-40 h-40 object-cover rounded-lg"
-                  />
-                  <div className="mt-2">
-                    <p className="text-sm truncate font-medium">{item?.title}</p>
-                    <Rating value={item?.averageRating || 0} size="small" readOnly />
-                    <p className="text-sm font-semibold text-gray-700">${item?.price}</p>
+          <div className="flex flex-wrap justify-center gap-2 py-8 w-full overflow-y-auto max-h-[800px] example">
+            {loading ? <Loading /> :
+              filteredData.length > 0 ? (
+                filteredData.map((item) => (
+                  <div
+                    key={item?._id}
+                    className="w-44 cursor-pointer rounded-xl hover:shadow-lg transition duration-200 bg-white p-2"
+                    onClick={() => router.push(`/detailspage/${item?._id}`)}
+                  >
+                    <img
+                      src={item?.image?.[0]}
+                      alt={item?.title}
+                      className="w-40 h-40 object-cover rounded-lg"
+                    />
+                    <div className="mt-2">
+                      <p className="text-sm truncate font-medium">{item?.title}</p>
+                      <Rating value={item?.averageRating || 0} size="small" readOnly />
+                      <p className="text-sm font-semibold text-gray-700">${item?.price}</p>
+                    </div>
                   </div>
-                </div>
-              ))
-            ) : (
-              <p className="text-gray-500 text-sm text-center w-full">No products available.</p>
-            )}
+                ))
+              ) : (
+                <p className="text-gray-500 text-sm text-center w-full">No products available.</p>
+              )}
           </div>
         </div>
 
 
         <div >
-          {/* Trigger Button (You can place this elsewhere as needed) */}
-          <p onClick={() => setIsOpen(true)} className="md:hidden mr-2"><GiSettingsKnobs /></p>
-
           {/* Overlay */}
           <div
             onClick={() => setIsOpen(false)}
@@ -274,11 +281,14 @@ function Page() {
             ${isOpen ? 'translate-y-10 opacity-100' : 'translate-y-full opacity-0'}`}
             >
               {/* Header */}
-              <div className="flex justify-between items-center text-black mb-3">
+              <div className="flex justify-between items-center text-black mb-3 sticky">
                 <p className="text-[20px] font-semibold">Filters</p>
                 <RxCross1
                   className="text-[#807676] cursor-pointer"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false)
+                    clearFilters()
+                  }}
                 />
               </div>
 
@@ -292,7 +302,8 @@ function Page() {
                     className={`flex justify-between items-center cursor-pointer ${selectedCategory === cat ? 'font-semibold text-black' : ''
                       }`}
                     onClick={() => {
-                      setSelectedCategory(cat);
+                      setIsOpen(false)
+                      setSelectedCategory(cat)
                       dispatch(getProductByCatagori(cat))
                     }}
                   >
@@ -372,7 +383,10 @@ function Page() {
               </div>
               <hr className="mb-3" />
               {/* Apply Filter Button */}
-              <Button className="rounded-3xl w-full mb-20" onClick={() => setIsOpen(false)}>Apply Filter</Button>
+              <Button className="rounded-3xl w-full mb-20" onClick={() => {
+                applyFilters()
+                setIsOpen(false)
+              }}>Apply Filter</Button>
             </div>
           </div>
         </div>

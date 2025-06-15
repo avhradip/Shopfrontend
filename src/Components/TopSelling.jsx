@@ -22,7 +22,7 @@ function TopSelling() {
         <div className='flex flex-col items-center justify-center py-10 mx-4 md:mx-10 gap-6'>
             <p className='text-2xl md:text-3xl font-bold'>TOP SELLING</p>
 
-            <div className="w-full max-w-7xl mx-auto px-2 py-4 flex gap-4 overflow-x-auto scrollbar-none">
+            <div className="w-full max-w-7xl mx-auto px-2 py-4 flex gap-4 overflow-x-auto scrollbar-none example">
                 {loading ? (
                     <div className='w-full flex justify-center'>
                         <Loading className='animate-spin w-10 h-10 text-gray-500' />

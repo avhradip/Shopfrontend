@@ -2,8 +2,10 @@ import React from 'react'
 import { Button } from "../Components/Ui/button"
 import i1 from "../../public/Rectangle.png"
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
 function Hero() {
+    const router = useRouter()
   return (
       <div className="md:mx-[5%] mx-1 p-2 flex md:flex-row flex-col gap-5 items-center  md:justify-between">
           <div className="md:w-[45%] flex flex-col gap-4 md:items-start items-center justify-center ">
@@ -13,7 +15,7 @@ function Hero() {
                   designed to bring out your individuality and cater to your sense of
                   style.
               </p>
-              <Button className='text-[15px] font-light rounded-4xl md:w-40 w-72 h-10'>Shop Now</Button>
+              <Button className='text-[15px] font-light rounded-4xl md:w-40 w-72 h-10' onClick={() => router.push('/newarrivals')}>Shop Now</Button>
               <div className="flex flex-wrap items-center md:justify-start justify-center gap-10 font-semibold">
                   <div>
                       <p className="text-2xl md:text-3xl">200+</p>
