@@ -26,7 +26,7 @@ export const login = createAsyncThunk('/user/login', async (userInfo, { rejectWi
 export const forgotPassword = createAsyncThunk('/user/forgot-password', async (email) => {
     try {
         const { data } = await axios.post('https://shop-co-backend-hq73.onrender.com/api/v1/user/forgot-password', { email });
-        
+
         return data;
     } catch (error) {
         console.log("forgot-password error", error);
@@ -35,20 +35,26 @@ export const forgotPassword = createAsyncThunk('/user/forgot-password', async (e
 }
 )
 
-export const resetPassword = createAsyncThunk('/user/reset-password', async ({ newPassword, conformPassword, token }) => {
-    try {
-        const { data } = await axios.post('https://shop-co-backend-hq73.onrender.com/api/v1/user/reset-password', { newPassword, conformPassword }, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        
-        return data;
-    } catch (error) {
-        console.log("forgot-password error", error);
-        return rejectWithValue(error.response?.data?.message || "forgot-password failed");
+export const resetPassword = createAsyncThunk(
+    '/user/reset-password',
+    async ({ newPassword, conformPassword, token }, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.post(
+                'https://shop-co-backend-hq73.onrender.com/api/v1/user/reset-password',
+                { newPassword, conformPassword },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.message || "Reset password failed");
+        }
     }
-})
+);
+
 
 export const getUserFun = createAsyncThunk('/api/user/', async () => {
     try {
