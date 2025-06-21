@@ -35,9 +35,9 @@ export const forgotPassword = createAsyncThunk('/user/forgot-password', async (e
 }
 )
 
-export const resetPassword = createAsyncThunk(
-    '/user/reset-password',
-    async ({ newPassword, conformPassword, token }, { rejectWithValue }) => {
+export const resetPassword = createAsyncThunk('/user/reset-password',async ({ newPassword, conformPassword, token }, { rejectWithValue }) => {
+        console.log(token)
+
         try {
             const { data } = await axios.post(
                 'https://shop-co-backend-hq73.onrender.com/api/v1/user/reset-password',
@@ -286,7 +286,6 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            // Sign Up
             .addCase(signUp.pending, (state) => {
                 state.loading = true;
             })
@@ -299,7 +298,6 @@ const userSlice = createSlice({
                 state.error = action.payload;
             })
 
-            // Login
             .addCase(login.pending, (state) => {
                 state.loading = true;
             })
@@ -477,7 +475,28 @@ const userSlice = createSlice({
             })
             .addCase(getReviewByProductId.rejected, (state) => {
                 state.loading = false
-                state.review = []
+                state.error = true
+            })
+            .addCase(forgotPassword.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(forgotPassword.fulfilled, (state, action) => {
+                state.loading = false
+                state.error = false
+            })
+            .addCase(forgotPassword.rejected, (state) => {
+                state.loading = false
+                state.error = true
+            })
+            .addCase(resetPassword.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(resetPassword.fulfilled, (state) => {
+                state.loading = false
+                state.error = false
+            })
+            .addCase(resetPassword.rejected, (state) => {
+                state.loading = false
                 state.error = true
             })
     }
