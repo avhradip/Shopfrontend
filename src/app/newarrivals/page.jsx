@@ -236,35 +236,38 @@ function Page() {
         </div>
 
         {/* Product Display */}
-        <div className="md:mx-16 flex flex-col items-center">
-          <p className="text-2xl md:text-3xl font-bold text-center">NEW ARRIVALS</p>
+        <div className="flex flex-col items-center w-full px-4 sm:px-6 lg:px-8">
+          <p className="text-2xl md:text-3xl font-bold text-center mb-2">NEW ARRIVALS</p>
 
-          <div className="flex flex-wrap justify-center gap-2 py-8 w-full overflow-y-auto max-h-[800px] example">
-            {loading ? <Loading /> :
-              filteredData.length > 0 ? (
-                filteredData.map((item) => (
-                  <div
-                    key={item?._id}
-                    className="w-44 cursor-pointer rounded-xl hover:shadow-lg transition duration-200 bg-white p-2"
-                    onClick={() => router.push(`/detailspage/${item?._id}`)}
-                  >
-                    <img
-                      src={item?.image?.[0]}
-                      alt={item?.title}
-                      className="w-40 h-40 object-cover rounded-lg"
-                    />
-                    <div className="mt-2">
-                      <p className="text-sm truncate font-medium">{item?.title}</p>
-                      <Rating value={item?.averageRating || 0} size="small" readOnly />
-                      <p className="text-sm font-semibold text-gray-700">${item?.price}</p>
-                    </div>
+          <div className="flex flex-wrap justify-center md:justify-start gap-4 py-8 w-full overflow-y-auto max-h-[800px] example">
+            {loading ? (
+              <Loading />
+            ) : filteredData.length > 0 ? (
+              filteredData.map((item) => (
+                <div
+                  key={item?._id}
+                  className="w-48 sm:w-48 md:w-52 lg:w-56 cursor-pointer rounded-xl hover:shadow-lg transition duration-200 bg-white p-3 shadow-xs"
+                  onClick={() => router.push(`/detailspage/${item?._id}`)}
+                >
+                  <img
+                    src={item?.image?.[0]}
+                    alt={item?.title}
+                    className="w-full h-48 md:h-52 lg:h-56 object-cover rounded-lg"
+                  />
+                  <div className="mt-2">
+                    <p className="text-sm sm:text-base truncate font-medium">{item?.title}</p>
+                    <Rating value={item?.averageRating || 0} size="small" readOnly />
+                    <p className="text-sm sm:text-base font-semibold text-gray-700">${item?.price}</p>
                   </div>
-                ))
-              ) : (
-                <p className="text-gray-500 text-sm text-center w-full">No products available.</p>
-              )}
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500 text-sm text-center w-full">No products available.</p>
+            )}
           </div>
         </div>
+
+
 
 
         <div >
