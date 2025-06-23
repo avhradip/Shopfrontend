@@ -35,24 +35,25 @@ export const forgotPassword = createAsyncThunk('/user/forgot-password', async (e
 }
 )
 
-export const resetPassword = createAsyncThunk('/user/reset-password',async ({ newPassword, conformPassword, token }, { rejectWithValue }) => {
-        console.log(token)
+export const resetPassword = createAsyncThunk('/user/reset-password', async ({ newPassword, conformPassword, token }, { rejectWithValue }) => {
+    console.log(newPassword, conformPassword, token)
+    try {
+        const { data } = await axios.post(
+            'https://shop-co-backend-hq73.onrender.com/api/v1/user/reset-password',
+            { newPassword, conformPassword },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        console.log(token);
 
-        try {
-            const { data } = await axios.post(
-                'https://shop-co-backend-hq73.onrender.com/api/v1/user/reset-password',
-                { newPassword, conformPassword },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-            return data;
-        } catch (error) {
-            return rejectWithValue(error.response?.data?.message || "Reset password failed");
-        }
+        return data;
+    } catch (error) {
+        return rejectWithValue(error.response?.data?.message || "Reset password failed");
     }
+}
 );
 
 

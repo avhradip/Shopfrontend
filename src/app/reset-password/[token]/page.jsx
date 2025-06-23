@@ -9,20 +9,21 @@ import { useDispatch, useSelector } from "react-redux";
 
 function ResetPasswordPage() {
   const router = useRouter();
-  const { token } = useParams(); // ✅ Extract token from URL params
+  const { token } = useParams(); 
   const { loading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  console.log(token);
 
   const [newPassword, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [conformPassword, setconformPassword] = useState("");
 
-  const updatePassword = async ({ newPassword, confirmPassword, token }) => {
-    if (newPassword !== confirmPassword) {
+  const updatePassword = async ({ newPassword: newPassword, conformPassword: conformPassword, token: token }) => {
+    if (newPassword !== conformPassword) {
       return toast.error("Passwords do not match");
     }
 
     toast.promise(
-      dispatch(resetPassword({ newPassword, confirmPassword, token }))
+      dispatch(resetPassword({ newPassword, conformPassword, token }))
         .unwrap()
         .then(() => router.push("/login")),
       {
@@ -56,14 +57,14 @@ function ResetPasswordPage() {
 
           <div>
             <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700">
-              Confirm Password
+              Conform Password
             </label>
             <input
               type="password"
               autoComplete="new-password"
               required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={conformPassword}
+              onChange={(e) => setconformPassword(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-black focus:border-black sm:text-sm"
               placeholder="Confirm Password"
             />
@@ -71,7 +72,7 @@ function ResetPasswordPage() {
 
           <button
             onClick={() =>
-              updatePassword({ newPassword, confirmPassword, token })
+              updatePassword({ newPassword: newPassword, conformPassword: conformPassword, token:token })
             }
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black text-sm font-medium"
           >
