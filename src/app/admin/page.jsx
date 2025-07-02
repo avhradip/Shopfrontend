@@ -154,7 +154,7 @@ function App() {
             await toast.promise(
                 dispatch(editProduct({ id: editId, data: updatedProduct })).unwrap().then(() => {
                     dispatch(getAllProduct());
-                    setShowAddProductForm(false); // optionally close the form
+                    setShowAddProductForm(false);
                 }),
                 {
                     loading: 'Updating...',
@@ -237,7 +237,7 @@ function App() {
                                             { id: "productColor", label: "Color", value: color, setter: setColor, type: "text" },
                                             { id: "productBrand", label: "Brand", value: brand, setter: setBrand, type: "text" },
                                             { id: "productSize", label: "Size", value: size, setter: setSize, type: "text" },
-                                        ].map(({ id, label, value, setter, type, step }) => (
+                                        ]?.map(({ id, label, value, setter, type, step }) => (
                                             <div key={id}>
                                                 <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
                                                     {label}
@@ -263,7 +263,7 @@ function App() {
                                                 { id: "productImage2", image: image2, setImage: setImage2, label: "Image 2" },
                                                 { id: "productImage3", image: image3, setImage: setImage3, label: "Image 3" },
                                                 { id: "productImage4", image: image4, setImage: setImage4, label: "Image 4" }
-                                            ].map(({ id, image, setImage, label }) => (
+                                            ]?.map(({ id, image, setImage, label }) => (
                                                 <div key={id} className="flex flex-col items-center gap-2">
                                                     <label
                                                         htmlFor={id}
@@ -367,7 +367,7 @@ function App() {
                                         </tr>
                                     </thead>
                                     <tbody className="text-gray-600 text-xs md:text-sm font-light">
-                                        {data?.products.map((product, index) => (
+                                        {data?.products?.map((product, index) => (
                                             <tr key={product._id} className="border-b border-gray-200 hover:bg-gray-50 group">
                                                 <td className="py-3 px-3 md:px-6 text-left ">{index + 1}</td>
                                                 <td className="py-3 px-3 md:px-6 text-left max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
