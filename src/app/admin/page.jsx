@@ -7,7 +7,7 @@ import { CiEdit } from "react-icons/ci";
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct, editOrder, editProduct, getAllProduct, removeProduct } from "../../Feature/prodectSlice";
-import { orders } from "../../Feature/prodectSlice";
+import { orders } from "../../Feature/userSlice";
 import { Input } from "../../../src/Components/Ui/input";
 
 function App() {
